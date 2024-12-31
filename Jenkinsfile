@@ -1,5 +1,5 @@
 pipeline {
-    // job
+    // job in main
     agent any
     stages {
         stage('Print Branch Name') {
