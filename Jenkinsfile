@@ -1,5 +1,4 @@
 pipeline {
-    // job in main
     agent any
     stages {
         stage('Print Branch Name') {
@@ -7,13 +6,17 @@ pipeline {
                 echo "Pipeline triggered for branch: ${env.BRANCH_NAME}"
             }
         }
-    }
-    stage('Checkout') {
+        stage('Checkout') {
             steps {
-                script {
-                        url: 'https://github.com/harshitsahu2311/Testing', 
-                        branch: "${env.BRANCH_NAME}"
-                }
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "${env.BRANCH_NAME}"]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/harshitsahu2311/Testing',
+                        credentialsId: 'Github-Cred'
+                    ]]
+                ])
             }
         }
+    }
 }
