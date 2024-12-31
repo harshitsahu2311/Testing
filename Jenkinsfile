@@ -8,4 +8,12 @@ pipeline {
             }
         }
     }
+    stage('Checkout') {
+            steps {
+                script {
+                        url: 'https://github.com/harshitsahu2311/Testing', 
+                        branch: "${env.BRANCH_NAME}"
+                }
+            }
+        }
 }
