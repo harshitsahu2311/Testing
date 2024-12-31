@@ -1,4 +1,5 @@
 pipeline {
+    // job
     agent any
     stages {
         stage('Print Branch Name') {
