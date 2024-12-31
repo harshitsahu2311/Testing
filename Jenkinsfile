@@ -8,14 +8,12 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: "${env.BRANCH_NAME}"]],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/harshitsahu2311/Testing',
-                        credentialsId: 'Github-Cred'
-                    ]]
-                ])
+                script {
+   
+                    git credentialsId: 'Github-Cred', 
+                        url: 'https://github.com/harshitsahu2311/Testing', 
+                        branch: "${env.BRANCH_NAME}"
+                }
             }
         }
     }
